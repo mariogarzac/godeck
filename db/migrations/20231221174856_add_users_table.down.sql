@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS sound_library;
+DROP TABLE IF EXISTS users;
