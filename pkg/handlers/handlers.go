@@ -2,12 +2,12 @@ package handlers
 
 import (
 	"fmt"
-	"log"
-	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/mariogarzac/moodeck/config"
-	"github.com/mariogarzac/moodeck/pkg/models"
+	"github.com/mariogarzac/moodeck/model"
+	"github.com/mariogarzac/moodeck/pkg/config"
+	"github.com/mariogarzac/moodeck/pkg/render"
+	"github.com/mariogarzac/moodeck/view/user"
 )
 
 var Repo *Repository
@@ -26,16 +26,29 @@ func NewHandlers(r *Repository){
     Repo = r
 }
 
-func (m *Repository)Hello(c echo.Context) error {
-    test := make(map[string]string)
-    test["hello"] = "world"
+func (m *Repository)HandleRegister(c echo.Context) error {
+    username := c.FormValue("username")
+    email := c.FormValue("email")
+    password := c.FormValue("password")
 
-    fmt.Println(m.App.DataBase)
-    
-    log.Println("done testing db")
+    // err := m.App.DataBase.RegisterUser(username, email, password)
+    //
+    // if err != nil {
+    //     return err
+    // }
 
-    return c.Render(http.StatusOK, "index.html", models.TemplateData{
-        StringMap: test,
-    })
+    fmt.Println(username, email, password)
+
+    u := model.User{
+        Username: username,
+        Email: email,
+        Password: password,
+    }
+
+    return render.Render(c, user.Show(u))
+}
+
+func (m *Repository)HandleRegisterPage(c echo.Context) error {
+    return render.Render(c, user.RegisterUser())
 }
 
