@@ -1,11 +1,11 @@
 package config
 
 import (
-	"database/sql"
 	"html/template"
 	"log"
 
 	"github.com/gorilla/sessions"
+	"github.com/mariogarzac/moodeck/db"
 )
 
 type AppConfig struct {
@@ -13,5 +13,5 @@ type AppConfig struct {
     TemplateCache map[string]*template.Template
     InfoLog *log.Logger
     Session *sessions.CookieStore
-    DataBase *sql.DB
+    DataBase *db.Database
 }
