@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/mariogarzac/moodeck/pkg/handlers"
+	"github.com/mariogarzac/godeck/pkg/handlers"
 )
 
 func routes(e *echo.Echo){

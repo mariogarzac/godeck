@@ -1,4 +1,4 @@
-module github.com/mariogarzac/moodeck
+module github.com/mariogarzac/godeck
 
 go 1.21.4
 

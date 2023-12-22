@@ -11,8 +11,8 @@ import "io"
 import "bytes"
 
 import (
-	"github.com/mariogarzac/moodeck/model"
-	"github.com/mariogarzac/moodeck/view/layout"
+	"github.com/mariogarzac/godeck/model"
+	"github.com/mariogarzac/godeck/view/layout"
 )
 
 func Show(user model.User) templ.Component {
@@ -105,21 +105,12 @@ func RegisterUser() templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<body class=\"bg-gray-100\"><div><div class=\"flex items-center justify-center min-w-full min-h-screen\"><form action=\"/\" method=\"post\" class=\"flex flex-col md:w-1/5\"><div class=\"text-3xl font-bold text-center\"><span class=\"text-blue\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Var9 := `Register `
+			templ_7745c5c3_Var9 := `Welcome!`
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var9)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><body class=\"bg-gray-100\"><div><div class=\"flex items-center justify-center min-w-full min-h-screen\"><form action=\"/\" method=\"post\" class=\"flex flex-col md:w-1/5\"><div class=\"text-3xl font-bold text-center\"><span class=\"text-blue\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Var10 := `Welcome!`
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var10)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -127,8 +118,8 @@ func RegisterUser() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Var11 := `login `
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var11)
+			templ_7745c5c3_Var10 := `login `
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var10)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

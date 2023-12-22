@@ -4,10 +4,10 @@ import (
 	"fmt"
 
 	"github.com/labstack/echo/v4"
-	"github.com/mariogarzac/moodeck/model"
-	"github.com/mariogarzac/moodeck/pkg/config"
-	"github.com/mariogarzac/moodeck/pkg/render"
-	"github.com/mariogarzac/moodeck/view/user"
+	"github.com/mariogarzac/godeck/model"
+	"github.com/mariogarzac/godeck/pkg/config"
+	"github.com/mariogarzac/godeck/pkg/render"
+	"github.com/mariogarzac/godeck/view/user"
 )
 
 var Repo *Repository

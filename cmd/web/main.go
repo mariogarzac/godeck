@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/mariogarzac/moodeck/db"
-	"github.com/mariogarzac/moodeck/pkg/config"
-	"github.com/mariogarzac/moodeck/pkg/handlers"
+	"github.com/mariogarzac/godeck/db"
+	"github.com/mariogarzac/godeck/pkg/config"
+	"github.com/mariogarzac/godeck/pkg/handlers"
 )
 
 var app config.AppConfig

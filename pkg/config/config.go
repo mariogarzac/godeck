@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/gorilla/sessions"
-	"github.com/mariogarzac/moodeck/db"
+	"github.com/mariogarzac/godeck/db"
 )
 
 type AppConfig struct {
