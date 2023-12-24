@@ -1,7 +1,8 @@
+prerun:
+	@npx tailwindcss -i ./assets/styles/tailwind.css -o ./assets/styles/style.css
+	@templ generate
 
 run: 
-	npx tailwindcss -i ./assets/styles/tailwind.css -o ./assets/styles/style.css
-	@~/go/bin/templ generate
 	@go run cmd/web/*.go
 
 test:
