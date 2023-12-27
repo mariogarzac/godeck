@@ -105,7 +105,7 @@ func RegisterUser() templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<body class=\"bg-gray-100\"><div><div class=\"flex items-center justify-center min-w-full min-h-screen\"><form action=\"/\" method=\"post\" class=\"flex flex-col md:w-1/5\"><div class=\"text-3xl font-bold text-center\"><span class=\"text-blue\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"bg-gray-100\"><div class=\"flex items-center justify-center min-w-full min-h-screen\"><form action=\"/register\" method=\"post\" class=\"flex flex-col md:w-1/5\"><div class=\"text-3xl font-bold text-center\"><span class=\"text-blue\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -114,7 +114,7 @@ func RegisterUser() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</span> <input name=\"username\" type=\"text\" placeholder=\"username\" class=\"p-3 mt-8 rounded-md border-2 border-grey focus:outline-none focus:border-blue\"></div><input name=\"email\" type=\"email\" placeholder=\"email\" class=\"p-3 mt-8 rounded-md border-2 border-grey focus:outline-none focus:border-blue\"> <input name=\"password\" type=\"password\" placeholder=\"password\" class=\"p-3 mt-4 rounded-md border-2 border-grey focus:outline-none focus:border-blue\"> <button type=\"submit\" class=\"p-3 mt-6 rounded-md bg-blue font-bold text:white\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</span></div><input name=\"username\" type=\"text\" placeholder=\"username\" class=\"p-3 mt-8 rounded-md border-2 border-grey focus:outline-none focus:border-blue\"> <input name=\"email\" type=\"email\" placeholder=\"email\" class=\"p-3 mt-4 rounded-md border-2 border-grey focus:outline-none focus:border-blue\"> <input name=\"password\" type=\"password\" placeholder=\"password\" class=\"p-3 mt-4 rounded-md border-2 border-grey focus:outline-none focus:border-blue\"> <button type=\"submit\" class=\"p-3 mt-6 rounded-md bg-blue font-bold text:white\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -123,7 +123,7 @@ func RegisterUser() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</button></form></div></div></body>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</button></form></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

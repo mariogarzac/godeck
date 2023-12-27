@@ -1,0 +1,18 @@
+package user
+
+templ UploadFile(){
+    <div id="upload-container">
+        <form id="audio-form" hx-post="/upload-file" hx-encoding="multipart/form-data" hx-target="#upload-message">
+             <input type="file" name="audio-file" id="audio-file"/>
+             <button type="submit"> Upload </button>
+         </form>
+         @FileUploadMessage(){}
+    </div>
+}
+
+templ FileUploadMessage() {
+    <div>
+        <p id="upload-message"></p>
+    </div>
+}
+

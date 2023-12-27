@@ -2,10 +2,13 @@ package layout
 
 templ Base() {
     <html lang="en">
-    <link rel="stylesheet" href="assets/styles/style.css"></link>
+        <link rel="stylesheet" href="/assets/styles/style.css"></link>
+        <script src="/vendor/htmx/htmx.min.js"></script>
         <head>
             <title> Document </title>
         </head>
+        <body>
             { children... }
+        </body>
     </html>
 }
