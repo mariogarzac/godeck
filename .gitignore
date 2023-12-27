@@ -18,6 +18,7 @@
 vendor/
 bin/
 tmp/
+static/
 
 # Go workspace file
 go.work
