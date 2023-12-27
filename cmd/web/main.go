@@ -8,24 +8,24 @@ import (
 )
 
 var app config.AppConfig
-var portNumber = ":3000"
+var host = "localhost:3000"
 
-func main(){
+func main() {
 
-    e := echo.New()
-    // e.Renderer = render.NewTemplate()
+	e := echo.New()
 
-    e.Static("/assets", "assets")
+	e.Static("/assets", "assets")
+	e.Static("/static", "static")
+	e.Static("/vendor", "vendor")
 
-    db.InitDB()
-    app.DataBase = db.GetDB()
-    defer app.DataBase.Close()
+	db.InitDB()
+	app.DataBase = db.GetDB()
+	defer app.DataBase.Close()
 
-    repo := handlers.NewRepository(&app)
-    handlers.NewHandlers(repo)
+	repo := handlers.NewRepository(&app)
+	handlers.NewHandlers(repo)
 
+	routes(e)
 
-    routes(e)
-
-    e.Logger.Fatal(e.Start(portNumber))
+    e.Logger.Fatal(e.Start(host))
 }
