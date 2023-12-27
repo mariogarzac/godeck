@@ -6,6 +6,13 @@ import (
 )
 
 func routes(e *echo.Echo){
-    e.GET("/", handlers.Repo.HandleRegisterPage)
-    e.POST("/", handlers.Repo.HandleRegister)
+
+    e.GET("/", handlers.Repo.HandleHomePage)
+
+    e.GET("/register", handlers.Repo.HandleRegisterPage)
+    e.POST("/register", handlers.Repo.HandleRegister)
+
+    e.POST("/upload-file", handlers.Repo.HandleFileUpload)
+
+    e.GET("/get-user-files", handlers.Repo.HandleShowUploadedFiles)
 }
