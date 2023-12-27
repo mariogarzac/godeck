@@ -6,7 +6,6 @@ import (
 	"log"
 
 	_ "github.com/lib/pq"
-	"golang.org/x/crypto/bcrypt"
 )
 
 const (
@@ -57,47 +56,3 @@ func (d *Database)Close() {
         log.Println("Database connection closed")
     }
 }
-
-func (d *Database)RegisterUser(username, email, password string) error {
-
-    // check if user already exists
-    stmt := "SELECT email FROM Users WHERE email = $1"
-    row := db.QueryRow(stmt, email)
-
-    var isDuplicate string
-    err = row.Scan(&isDuplicate)
-
-    if err != sql.ErrNoRows {
-        log.Println("Error user already exists", err)
-        return err
-    }
-
-    // insert user into table
-    var insert *sql.Stmt
-
-    insert, err := db.Prepare("INSERT into Users (username, email, password) VALUES ($1, $2, $3)")
-    if err != nil {
-        log.Println("Error preparing query", err)
-        return err
-    }
-    defer insert.Close()
-
-    var hashedPassword []byte
-    hashedPassword, err = bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-    if err != nil {
-        log.Println("Error creating the hash ", err)
-        return err
-    }
-
-    log.Println(len(hashedPassword))
-
-    _, err = insert.Exec(username, email, hashedPassword)
-
-    if err != nil {
-        log.Println("Error inserting data", err)
-        return err
-    }
-
-    return nil
-}
-
