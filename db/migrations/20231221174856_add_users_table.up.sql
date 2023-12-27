@@ -8,6 +8,8 @@ CREATE TABLE users(
 CREATE TABLE sound_library( 
     sound_id SERIAL PRIMARY KEY,
     user_id integer,
-    game_date DATE DEFAULT CURRENT_DATE,
+    sound_path varchar(80),
+    file_ext varchar(5),
+    file_size int,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
