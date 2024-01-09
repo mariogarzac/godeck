@@ -6,9 +6,6 @@ import (
 	"mime/multipart"
 	"net/http"
 	"os"
-	"strconv"
-	"time"
-
 )
 
 func UploadFile(file *multipart.FileHeader) (string, string, int64, error) {
@@ -27,20 +24,23 @@ func UploadFile(file *multipart.FileHeader) (string, string, int64, error) {
     // read file and get content type
     fileByte, err := io.ReadAll(src)
     fileType = http.DetectContentType(fileByte)
+    fileName = file.Filename 
 
     if err != nil {
         log.Println("no file to read", err)
         return fileType, fileName, fileSize , err
     }
 
+    var filePath string
+
     switch fileType{
     case "application/pdf":
-        fileName = "static/uploads/" + strconv.FormatInt(time.Now().Unix(), 10) + ".pdf"
+        filePath = "static/uploads/" + fileName
     default :
-        fileName = "static/uploads/" + strconv.FormatInt(time.Now().Unix(), 10) + ".jpg"
+        filePath = "static/uploads/" + fileName
     }
 
-    err = os.WriteFile(fileName, fileByte, 0777)
+    err = os.WriteFile(filePath, fileByte, 0777)
 
     if err != nil {
         log.Println("No file to write to",err)
