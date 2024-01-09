@@ -2,17 +2,7 @@ package user
 
 import (
     "github.com/mariogarzac/godeck/view/layout"
-    "github.com/mariogarzac/godeck/model"
 )
-
-templ Show(user model.User) {
-    @layout.Base(){
-        <h1> hello from show </h1>
-        { user.Username }
-        { user.Email }
-        { user.Password }
-    }
-}
 
 templ RegisterUser() {
     @layout.Base(){
