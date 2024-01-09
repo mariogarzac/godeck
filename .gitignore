@@ -22,6 +22,7 @@ static/
 
 # Go workspace file
 go.work
+*_templ.go
 
 # npm
 node_modules
