@@ -4,10 +4,11 @@ templ Base() {
     <html lang="en">
         <link rel="stylesheet" href="/assets/styles/style.css"></link>
         <script src="/vendor/htmx/htmx.min.js"></script>
+        <script src="/vendor/htmx/response-targets.js"></script>
         <head>
             <title> Document </title>
         </head>
-        <body>
+        <body class="h-screen w-screen overflow-hidden">
             { children... }
         </body>
     </html>
