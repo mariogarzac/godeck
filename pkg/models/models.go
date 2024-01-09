@@ -22,6 +22,6 @@ type File struct {
 
 type Response struct {
     Message string `json:"message"`
-    Data  File     `json:"file_info"`
+    Success bool   `json:"success"`
 }
 
