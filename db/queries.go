@@ -2,7 +2,6 @@ package db
 
 import (
     "database/sql"
-    "fmt"
     "log"
     "strings"
 
@@ -20,7 +19,7 @@ func (d *Database)RegisterUser(username, email, password string) error {
     var isDuplicate string
     err = row.Scan(&isDuplicate)
 
-    if err != sql.ErrNoRows {
+    if err == sql.ErrNoRows {
         log.Println("Error user already exists", err)
         return err
     }
@@ -83,7 +82,6 @@ func (d *Database) GetFilesByUserId(userId int) ([]models.File, error) {
     stmt := "SELECT sound_path, file_ext, file_size FROM sound_library WHERE user_id = $1"
 
     rows, err := db.Query(stmt, userId)
-    fmt.Println("rows are", rows)
 
     if err != nil {
         log.Println(err)
@@ -92,7 +90,6 @@ func (d *Database) GetFilesByUserId(userId int) ([]models.File, error) {
 
     var fileName, fileType, fileSize string
 
-    fmt.Println("entre")
     for rows.Next() {
         if err := rows.Scan(&fileName, &fileType, &fileSize); err != nil {
             log.Println(err)
