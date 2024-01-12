@@ -2,13 +2,40 @@ package user
 
 templ UploadFile(){
     <div id="upload-container">
-        <form id="audio-form" hx-post="/upload-file" 
-              hx-swap="beforeend"
-              hx-target="#file-list"
-              hx-encoding="multipart/form-data" >
+        <form id="audio-form" 
+              hx-post="/upload-file" 
+              hx-encoding="multipart/form-data" 
+              hx-swap="none"
+              onSubmit="return submitForm()"
+              > 
             <input type="file" name="audio-file" id="audio-file"/>
             <button type="submit"> Upload </button>
         </form>
+        
+        <script>
+        function submitForm() {
+            document.addEventListener('htmx:afterRequest', function(event) {
+                var xhr = event.detail.xhr;
+                var errorMessageElement = document.getElementById('error-message');
+                
+                if (xhr.status !== 200) {
+                    errorMessageElement.innerHTML = xhr.responseText;
 
+                    setTimeout(function() {
+                        errorMessageElement.innerHTML = '';
+                    }, 3000);
+                }
+            });
+
+            // Delay the form reset by 500 milliseconds (adjust as needed)
+            setTimeout(function() {
+                var audioForm = document.getElementById('audio-form');
+                audioForm.reset();
+            }, 500);
+
+            // Return false to prevent the form from being submitted immediately
+            return false;
+        }
+        </script>
     </div>
 }
