@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"log"
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -10,7 +10,6 @@ import (
 	"github.com/mariogarzac/godeck/pkg/models"
 	"github.com/mariogarzac/godeck/pkg/render"
 	"github.com/mariogarzac/godeck/pkg/utils"
-	"github.com/mariogarzac/godeck/view/error"
 	"github.com/mariogarzac/godeck/view/home"
 	"github.com/mariogarzac/godeck/view/user"
 )
@@ -36,7 +35,6 @@ func (m *Repository)HandleRegisterPage(c echo.Context) error {
 }
 
 func (m *Repository)HandleHomePage(c echo.Context) error {
-
     return render.Render(c, home.LoadHome())
 }
 
@@ -66,8 +64,7 @@ func (m *Repository)HandleRegister(c echo.Context) error {
     return c.Redirect(http.StatusSeeOther, "/")
 }
 
-func (m *Repository)HandleFileUpload(c echo.Context) error {
-
+func (m *Repository) HandleFileUpload(c echo.Context) error {
     const MAX_SIZE = 5000000
 
     var fileType, fileName string
@@ -75,26 +72,26 @@ func (m *Repository)HandleFileUpload(c echo.Context) error {
 
     file, err := c.FormFile("audio-file")
     if err != nil {
-        log.Println("Could not get file",err)
-        return err
+        return c.String(http.StatusBadRequest, "Error reading file.")
     }
 
     fileType, fileName, fileSize, err = utils.UploadFile(file)
+    fmt.Println(fileName, fileSize)
 
-    if err != nil  {
-        return render.Render(c, errorutil.ErrorMessage("Error uploading file."))
+    if err != nil {
+        return c.String(http.StatusInternalServerError, "Error uploading file.")
     }
 
     if MAX_SIZE < fileSize {
-        return render.Render(c, errorutil.ErrorMessage("File too large."))
+        return c.String(http.StatusBadRequest, "File size exceeded.")
     }
 
     fileExt := (strings.Split(fileType, "/"))[1]
     err = m.App.DataBase.SaveFileToDB(fileExt, fileName, fileSize)
 
     if err != nil {
-        return err
+        return c.String(http.StatusInternalServerError, "Error saving to database. Try again.")
     }
 
-    return render.Render(c, user.UpdateFileList(fileName))
+    return c.String(http.StatusOK, fileName)
 }
