@@ -5,16 +5,15 @@ import (
 )
 
 templ ShowFiles(files []models.File){
-    <div id="file-list" hx-get="/get-files" hx-target="#file-list" hx-swap="outerHTML" hx-trigger="load">
+    <div id="file-list" hx-get="/get-files" hx-trigger="load">
         for _, file := range files {
             <p class="m-auto text-white"> {file.FileName} </p>
         }
     </div>
 }
 
-templ UpdateFileList(fileName string){
-    <div hx-target="#file-list" hx-swap="beforeend">
-        <p class="m-auto text-white"> { fileName } </p>
-    </div>
-
+templ UpdateFileList(fileName string, target string){
+        <div hx-target={"#"+ target} hx-swap="beforeend">
+            <p class="m-auto text-white"> { fileName } </p>
+        </div>
 }
