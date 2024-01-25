@@ -6,36 +6,29 @@ templ UploadFile(){
               hx-post="/upload-file" 
               hx-encoding="multipart/form-data" 
               hx-swap="none"
-              onSubmit="return submitForm()"
-              > 
-            <input type="file" name="audio-file" id="audio-file"/>
-            <button type="submit"> Upload </button>
+              onSubmit="return submitForm()" > 
+
+            <label for="audio-file" 
+            class="font-bold
+            w-auto mb-1 cursor-pointer
+            bg-gray-400 text-black py-2
+            px-4 rounded-lg hover:bg-gray-500"> ^ </label>
+
+            <input id="audio-file" 
+            name="audio-file" 
+            type="file" 
+            style="visibility:hidden" 
+            onchange="toggleUpload(this)" 
+            class="border-2 border-gray-400 p-2 rounded-lg"/>
+
+            <button id="upload-button" type="submit" 
+            class="text-black
+            font-bold px-2 py-1
+            bg-gray-400 hover:bg-gray-500 rounded-lg" 
+            style="display: none" > 
+            Upload </button>
         </form>
         
-        <script>
-        function submitForm() {
-            document.addEventListener('htmx:afterRequest', function(event) {
-                var xhr = event.detail.xhr;
-                var errorMessageElement = document.getElementById('error-message');
-                
-                if (xhr.status !== 200) {
-                    errorMessageElement.innerHTML = xhr.responseText;
-
-                    setTimeout(function() {
-                        errorMessageElement.innerHTML = '';
-                    }, 3000);
-                }
-            });
-
-            // Delay the form reset by 500 milliseconds (adjust as needed)
-            setTimeout(function() {
-                var audioForm = document.getElementById('audio-form');
-                audioForm.reset();
-            }, 500);
-
-            // Return false to prevent the form from being submitted immediately
-            return false;
-        }
-        </script>
+        <script src="assets/js/upload.js"></script>
     </div>
 }
