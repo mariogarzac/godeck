@@ -1,6 +1,8 @@
 package utils
 
 import (
+	"errors"
+	"fmt"
 	"io"
 	"log"
 	"mime/multipart"
@@ -33,17 +35,16 @@ func UploadFile(file *multipart.FileHeader) (string, string, int64, error) {
 
     var filePath string
 
-    switch fileType{
-    case "application/pdf":
-        filePath = "static/uploads/" + fileName
-    default :
-        filePath = "static/uploads/" + fileName
+    if fileType != "audio/mpeg" {
+        return fileType, fileName, fileSize , errors.New("File is not an mp3")
     }
 
-    err = os.WriteFile(filePath, fileByte, 0777)
+    filePath = "static/uploads/" + fileName
+
+    err = os.WriteFile(filePath, fileByte, 0644)
 
     if err != nil {
-        log.Println("No file to write to",err)
+        log.Println("Could not write file:",err)
         return fileType, fileName, fileSize, err
     }
 
