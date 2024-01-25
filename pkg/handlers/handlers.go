@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -65,7 +64,7 @@ func (m *Repository)HandleRegister(c echo.Context) error {
 }
 
 func (m *Repository) HandleFileUpload(c echo.Context) error {
-    const MAX_SIZE = 5000000
+    const MAX_SIZE = 8000000
 
     var fileType, fileName string
     var fileSize int64
@@ -76,10 +75,9 @@ func (m *Repository) HandleFileUpload(c echo.Context) error {
     }
 
     fileType, fileName, fileSize, err = utils.UploadFile(file)
-    fmt.Println(fileName, fileSize)
 
     if err != nil {
-        return c.String(http.StatusInternalServerError, "Error uploading file.")
+        return c.String(http.StatusInternalServerError, "File must be an mp3.")
     }
 
     if MAX_SIZE < fileSize {
@@ -87,6 +85,7 @@ func (m *Repository) HandleFileUpload(c echo.Context) error {
     }
 
     fileExt := (strings.Split(fileType, "/"))[1]
+
     err = m.App.DataBase.SaveFileToDB(fileExt, fileName, fileSize)
 
     if err != nil {
