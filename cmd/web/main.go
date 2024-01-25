@@ -16,7 +16,6 @@ func main() {
 
 	e.Static("/assets", "assets")
 	e.Static("/static", "static")
-	e.Static("/vendor", "vendor")
 
 	db.InitDB()
 	app.DataBase = db.GetDB()
