@@ -19,6 +19,7 @@ vendor/
 bin/
 tmp/
 static/
+*/htmx/
 
 # Go workspace file
 go.work
