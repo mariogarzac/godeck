@@ -13,3 +13,5 @@ migrateup:
 
 migratedown:
 	migrate -path db/migrations -database "postgresql://mariogarza:@localhost:5432/godeck?sslmode=disable" -verbose down
+
+reset: migratedown migrateup
